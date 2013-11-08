@@ -1,9 +1,6 @@
 package com.rhg135.bedtime.desktop;
 
-import java.util.Iterator;
-
-import com.rhg135.bedtime.utils.Bedtimes;
-import com.rhg135.bedtime.utils.TakeIterator;
+import com.rhg135.bedtime.utils.IterableBedtimes;
 
 public class BedtimesCLI {
 	
@@ -14,12 +11,7 @@ public class BedtimesCLI {
 		}
 	
 		final Number initialHour = Double.parseDouble(args[0]);
-		Iterable<Number> it = new Iterable<Number>() {
-			public Iterator<Number> iterator() {
-				return new TakeIterator<Number>(6, Bedtimes.bedtimeIterator(initialHour));
-			}
-		};
-		for (Number t: it) {
+		for (Number t: new IterableBedtimes(6, 4, initialHour)) {
 			System.out.println("Time: " + t);
 		}
 		System.exit(0);
